@@ -1,0 +1,22 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: streamfab 0.1\n"
+"POT-Creation-Date: 2025-05-22 10:06+0200\n"
+"PO-Revision-Date: 2025-05-22 10:07+0200\n"
+"Last-Translator: David Parduhn <xkill85@gmx.net>\n"
+"Language-Team: David Parduhn\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.6\n"
+"X-Poedit-Basepath: ../../../..\n"
+"X-Poedit-SearchPath-0: .\n"
+
+#: buildVars.py:17
+msgid "streamfab"
+msgstr ""
+
+#: buildVars.py:20
+msgid "improve accessibility of streamfab with nvda"
+msgstr "Verbessern Sie die Zugänglichkeit von StreamFab mit NVDA"
