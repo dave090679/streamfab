@@ -17,17 +17,34 @@ class streamfab_uiaobj(UIA):
 
 class AppModule(appModuleHandler.AppModule):
 	def event_NVDAObject_init(self, obj):
-		if obj.role in [controlTypes.ROLE_DOCUMENT, controlTypes.ROLE_TABLE, controlTypes.ROLE_EDITABLETEXT]:
+		if obj.role in [controlTypes.ROLE_DOCUMENT, controlTypes.ROLE_DATAITEM, controlTypes.ROLE_EDITABLETEXT]:
 			self.trapobj = obj
 			self.bindGesture("kb:control+tab", "gotonext")
-			self.bindGesture("kb:control+shoft+tab", "gotoprev")
+			self.bindGesture("kb:control+shift+tab", "gotoprev")
 		if obj.role == controlTypes.ROLE_DOCUMENT:
 			obj.setFocus()
 	def script_gotonext(self, gesture):
-		self.trapobj.next.setFocus()
+		if self.trapobj.role == controlTypes.ROLE_EDITABLETEXT:
+			try:
+				self.trapobj.next.setFocus()
+			except AttributeError:
+				pass
+		elif self.trapobj.role in [controlTypes.ROLE_DOCUMENT, controlTypes.ROLE_DATAITEM]:
+			try:
+				self.trapobj.parent.next.setFocus()
+			except AttributeError:
+				pass
 	def script_gotoprev(self, gesture):
-		self.trapobj.previous.setFocus()
-
+		if self.trapobj.role in [controlTypes.ROLE_DOCUMENT, controlTypes.ROLE_DATAITEM]:
+			try:
+				self.trapobj.parent.previous.setFocus()
+			except AttributeError:
+				pass
+		elif self.trapobj.role == controlTypes.ROLE_EDITABLETEXT:
+			try:
+				self.trapobj.previous.setFocus()
+			except AttributeError:
+				pass
 
 
 	def chooseNVDAObjectOverlayClasses(self, obj, clslist):
